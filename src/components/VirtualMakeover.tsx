@@ -205,10 +205,9 @@ export default function VirtualMakeover() {
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2" style={{ alignItems: 'start', minHeight: '600px' }}>
-
+                <div className="makeover-grid">
                     {/* COL 1: CONTROLS */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="makeover-controls" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
                         {/* INPUT PANEL */}
                         <div className="glass-panel" style={{ padding: '30px', background: 'rgba(255, 255, 255, 0.03)', borderColor: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>
@@ -272,7 +271,7 @@ export default function VirtualMakeover() {
                     </div>
 
                     {/* COL 2: MAIN VIEWPORT */}
-                    <div style={{ position: 'relative', border: '1px solid rgba(255,255,255,0.1)', background: '#121212', borderRadius: '4px', overflow: 'hidden', minHeight: '500px', display: 'flex', flexDirection: 'column' }}>
+                    <div className="makeover-viewport" style={{ position: 'relative', border: '1px solid rgba(255,255,255,0.1)', background: '#121212', borderRadius: '4px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 
                         {/* SCANNER OVERLAY */}
                         <canvas ref={canvasRef} width={600} height={800} style={{ position: 'absolute', inset: 0, zIndex: 10, pointerEvents: 'none', opacity: 0.8 }} />
@@ -323,7 +322,7 @@ export default function VirtualMakeover() {
                     </div>
 
                     {/* COL 3: TELEMETRY */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="makeover-telemetry" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
                         <div className="glass-panel" style={{ padding: '30px', background: 'rgba(255, 255, 255, 0.03)', borderColor: 'rgba(255,255,255,0.1)' }}>
                             <label style={{ color: 'var(--color-brand)', fontSize: '0.65rem', fontWeight: '900', letterSpacing: '2px', display: 'block', marginBottom: '25px', textTransform: 'uppercase' }}>
@@ -385,6 +384,38 @@ export default function VirtualMakeover() {
 
                 </div>
             </div>
+            <style jsx>{`
+                .makeover-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 2fr 1fr;
+                    gap: 10px;
+                    align-items: start;
+                    min-height: 600px;
+                }
+                .makeover-viewport {
+                    min-height: 500px;
+                }
+                @media (max-width: 768px) {
+                    .makeover-grid {
+                        grid-template-columns: 1fr;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 30px;
+                    }
+                    /* Reorder for mobile: Viewport first */
+                    .makeover-viewport {
+                        order: 1;
+                        min-height: 400px;
+                        width: 100%;
+                    }
+                    .makeover-controls {
+                        order: 2;
+                    }
+                    .makeover-telemetry {
+                        order: 3;
+                    }
+                }
+            `}</style>
         </section>
     );
 }

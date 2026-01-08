@@ -44,7 +44,7 @@ export default function ServiceMenu() {
 
                 <div className="flex flex-column" style={{ width: '100%' }}>
 
-                    {/* CATEGORY TABS - PREMIUM MINIMALIST */}
+                    {/* CATEGORY TABS */}
                     <div style={{
                         display: 'flex',
                         justifyContent: 'center',
@@ -87,18 +87,9 @@ export default function ServiceMenu() {
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                                 >
-                                    <div className="grid grid-cols-2 gap-4" style={{ alignItems: 'flex-start' }}>
+                                    <div className="service-grid">
                                         {/* LEFT: CONTEXT CARD */}
-                                        <div style={{
-                                            padding: '50px',
-                                            background: '#0a0a0a',
-                                            color: '#fff',
-                                            position: 'sticky',
-                                            top: '120px',
-                                            borderRadius: '4px',
-                                            border: '1px solid #222',
-                                            boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
-                                        }}>
+                                        <div className="context-card">
                                             <div style={{
                                                 width: '40px', height: '40px',
                                                 border: '1px solid rgba(255,255,255,0.2)',
@@ -124,7 +115,7 @@ export default function ServiceMenu() {
                                         </div>
 
                                         {/* RIGHT: SERVICE LIST */}
-                                        <div style={{ paddingLeft: '40px' }}>
+                                        <div className="service-list">
                                             {displayItems.map((item, i) => (
                                                 <ServiceItemRow key={item.name + i} item={item} index={i} />
                                             ))}
@@ -144,6 +135,42 @@ export default function ServiceMenu() {
 
                 </div>
             </div>
+            <style jsx>{`
+                .service-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 40px;
+                    align-items: flex-start;
+                }
+                .context-card {
+                    padding: 50px;
+                    background: #0a0a0a;
+                    color: #fff;
+                    position: sticky;
+                    top: 120px;
+                    border-radius: 4px;
+                    border: 1px solid #222;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                }
+                .service-list {
+                    padding-left: 40px;
+                }
+                @media (max-width: 768px) {
+                    .service-grid {
+                        grid-template-columns: 1fr;
+                        gap: 20px;
+                    }
+                    .context-card {
+                        position: relative;
+                        top: 0;
+                        padding: 30px;
+                        margin-bottom: 30px;
+                    }
+                    .service-list {
+                        padding-left: 0;
+                    }
+                }
+            `}</style>
         </section>
     );
 }
