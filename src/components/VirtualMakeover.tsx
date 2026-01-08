@@ -303,7 +303,6 @@ export default function VirtualMakeover() {
                                             width: '60px', height: '60px', border: '2px solid rgba(255,255,255,0.2)', borderTopColor: 'var(--color-brand)', borderRadius: '50%',
                                             animation: 'spin 1s linear infinite', margin: '0 auto 20px'
                                         }}>
-                                            <style jsx>{` @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } } `}</style>
                                         </div>
                                         <p style={{ fontSize: '0.8rem', color: '#fff', letterSpacing: '3px', textTransform: 'uppercase' }}>
                                             {virtualMakeover.generating} {scanProgress}%
